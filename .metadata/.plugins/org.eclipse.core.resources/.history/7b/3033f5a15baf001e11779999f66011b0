@@ -1,0 +1,35 @@
+package com.example.myschool.lecture.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.example.myschool.lecture.LectureDto;
+import com.example.myschool.lecture.repository.LectureRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Service
+public class LectureService {
+	
+	private final LectureRepository lectureRepository;
+	
+	// 강의 목록 검색
+	public List<LectureDto> getLectures(String title) {
+		
+		ArrayList<LectureDto> lectures = new ArrayList<LectureDto>();
+		
+		if (title == null) {
+			lectureRepository.findAll().forEach(t -> {
+				
+				LectureDto lectureDto = LectureDto.builder()
+						.description(t.getDescription())
+						.title(t.getTitle())
+						.lectureId(t.getLectureId())
+						.build();
+			});
+		}
+	}
+}

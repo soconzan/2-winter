@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::title}, ~{}, ~{::#content})}">
+
+	<title th:text="${post.title}"></title>
+
+	<div id="content">
+		<h1>게시글</h1>
+		<table th:if="${post}!=null">
+			<tr>
+				<th>제목</th>
+				<td th:text="${post.title}"></td>
+			</tr>
+			<tr>
+				<th>작성시간</th>
+				<td th:text="${post.date}"></td>
+			</tr>
+			<tr>
+				<th>본문</th>
+				<td th:text="${post.content}"></td>
+			</tr>
+		</table>
+		<form id="pwForm" onclick="checkPw();">
+			<input type="password" id="pw">
+			<button type="button">수정</button>
+			<button type="button">삭제</button>
+		</form>
+		<a th:href="@{/posts/write/{id}(id=${post.postId})}">수정하기</a>
+		<a th:href="@{/posts/{id}/delete(id=${post.postId})}">삭제하기</a>
+		
+		<script>
+			
+			function checkPw() {
+				const inputPw = document.getElementById('pw').value;
+				const postPw = ${post.pw};
+				console.log(pw);
+			}
+		</script>
+	</div>
+
+</html>

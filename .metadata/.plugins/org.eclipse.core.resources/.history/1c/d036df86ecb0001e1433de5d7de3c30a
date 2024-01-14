@@ -1,0 +1,14 @@
+package com.example.myschool.post.service;
+
+import org.springframework.stereotype.Service;
+
+import com.example.myschool.post.repository.PostRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Service
+public class PostService {
+	
+	private final PostRepository postRepository;
+}

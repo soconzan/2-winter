@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::title}, ~{}, ~{::#content})}">
+
+	<title th:text="${post.title}"></title>
+
+	<div id="content">
+		<h1>게시글</h1>
+		<table th:if="${post}!=null">
+			<tr>
+				<th>제목</th>
+				<td th:text="${post.title}"></td>
+			</tr>
+			<tr>
+				<th>작성시간</th>
+				<td th:text="${post.date}"></td>
+			</tr>
+			<tr>
+				<th>본문</th>
+				<td th:text="${post.content}"></td>
+			</tr>
+		</table>
+		<form>
+			<input type="password" id="pw" placeholder="비밀번호">
+			<button type="button" onclick="checkPw('write')">수정</button>
+			<button type="button" onclick="checkPw('delete')">삭제</button>
+		</form>
+		
+		<h4>댓글 작성</h4>
+		<form id="cmntForm" th:action="@{/comment/create/{id}(id=${post.postId})}" method="POST">
+			<input type="text" name="content" placeholder="댓글" required>
+			<input type="password" name="pw" placeholder="비밀번호" required>
+			<input type="submit" value="등록">
+		</form>
+		
+		<!-- <h4>댓글</h4>
+		<table>
+			<tr th:each="comment: ${comments}">
+				<td th:text="${comment.content}"></td>
+				<td th:text="${comment.date}"></td>
+				<td><button th:onclick="checkCmntPw([[${comment.cmntId}]])">삭제</button></td>
+			</tr>
+		</table> -->
+		
+		<script th:inline="javascript">
+			
+			const postPw = [[${post.pw}]];
+			const id = [[${post.postId}]];
+			const cmntPw = [[${comment.pw}]];
+			
+			function checkPw(url) {
+				const pw = document.getElementById('pw').value;
+				
+				console.log(pw);
+				console.log(postPw);
+				
+				if (pw != postPw) {
+					alert("비밀번호를 확인하세요!");
+					return false;
+				}
+				
+				window.location.href = `/posts/${url}/${id}`;
+			}
+			
+			function checkCmntPw(id) {
+				console.log(id);
+				
+			}
+			
+		</script>
+	</div>
+
+</html>

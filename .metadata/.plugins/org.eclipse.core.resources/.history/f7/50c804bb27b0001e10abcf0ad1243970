@@ -1,0 +1,34 @@
+package com.example.myschool.web;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.example.myschool.teacher.TeacherDto;
+import com.example.myschool.teacher.domain.Teacher;
+import com.example.myschool.teacher.service.TeacherService;
+
+@Controller
+public class WebController {
+
+	@GetMapping("/")
+	public String index(Model model) {
+		
+		Teacher teacher = Teacher.builder()
+				.teacherId(1)
+				.name("JavaKim")
+				.description("No.1 Java Teacher")
+				.build();
+		
+		model.addAttribute("username", "hello");
+		model.addAttribute("teacher", teacher);
+		return "index";
+	}
+
+	@GetMapping("/view-teachers")
+	public List<TeacherDto> getTeachers(){
+		return new TeacherService.getTeachers(name);
+	}
+}

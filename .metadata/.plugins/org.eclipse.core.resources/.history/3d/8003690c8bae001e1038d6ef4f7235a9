@@ -1,0 +1,59 @@
+package com.example.hello;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+public class WebController {
+
+//	Get : method
+//	"/" : 경로
+//	@GetMapping("/")
+	public String home() {
+		return "index";
+	}
+
+	/*
+	 * Getter/Setter 설정시
+	 */
+//	@GetMapping("/hello")
+//	@ResponseBody
+//	public String hello() {
+//
+//		User user = new User();
+//		user.getUserId();
+//
+//		return "hello";
+//	}
+
+	/*
+	 * @AllArgsConstructor User 타입 사용 -> ResponseBody -> User 객체 반환
+	 */
+	/*
+	 * @GetMapping("/hello")
+	 * 
+	 * @ResponseBody public User hello() { return new User(1, "ABC"); }
+	 */
+
+	/*
+	 * Query String
+	 */
+	@GetMapping("/hello")
+	@ResponseBody
+	public String hello(@RequestParam(name = "name", required = false, defaultValue = "user") String name) {
+		return "Hello!" + name;
+	}
+
+	/*
+	 * Path Variable
+	 */
+	@GetMapping("/hello/{id}")
+	@ResponseBody
+	public User hello(@PathVariable("id") int id) {
+		return new User(id, "ABC");
+	}
+
+}

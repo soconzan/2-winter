@@ -1,0 +1,7 @@
+<div th:fragment="header">
+	<h1>Header</h1>
+</div>
+
+<div th:fragment="footer">
+	<h1>Footer</h1>
+</div>

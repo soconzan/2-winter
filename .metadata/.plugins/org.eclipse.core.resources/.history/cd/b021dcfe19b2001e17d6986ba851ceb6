@@ -1,0 +1,59 @@
+package com.example.myschool.web;
+
+import java.util.Date;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.example.myschool.post.controller.PostForm;
+import com.example.myschool.post.domain.Post;
+import com.example.myschool.post.service.PostService;
+
+import lombok.RequiredArgsConstructor;
+
+@Controller
+@RequiredArgsConstructor
+public class PostWebController {
+	
+	private final PostService postService;
+	
+	@GetMapping("/posts")
+	public String viewPosts(Model model){
+		model.addAttribute("posts", postService.getPosts());
+		return "posts";
+	}
+	
+	@GetMapping("/posts/{id}")
+	public String viewPost(Model model, @PathVariable("id") int id) {
+		model.addAttribute("post", postService.getPost(id));
+		return "post";
+	}
+	
+	@GetMapping("/posts/write")
+	public String writePost() {
+		return "write";
+	}
+	
+	@PostMapping("/posts/create")
+	public String createPost(PostForm form) {
+		Post post = new Post();
+		
+		post.setTitle(form.getTitle());
+		post.setContent(form.getContent());
+		post.setPw(form.getPw());
+		post.setDate(new Date());
+		
+		postService.save(post);
+		
+		return "redirect:/posts";
+	}
+	
+	@GetMapping("/posts/{id}/delete")
+	public String deletePost(@PathVariable("id") int id) {
+		return "redirect:/posts";
+	}
+	
+}

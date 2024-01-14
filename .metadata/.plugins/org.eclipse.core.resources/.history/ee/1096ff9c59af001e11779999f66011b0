@@ -1,0 +1,9 @@
+package com.example.myschool.lecture.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.myschool.lecture.domain.Lecture;
+
+public interface LectureRepository extends JpaRepository<Lecture, Integer> {
+
+}

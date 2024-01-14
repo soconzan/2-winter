@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::title}, ~{}, ~{::#content})}">
+
+	<title th:text="${post.title}"></title>
+
+	<div id="content">
+		<h1>게시글</h1>
+		<table th:if="${post}!=null">
+			<tr>
+				<th>제목</th>
+				<td th:text="${post.title}"></td>
+			</tr>
+			<tr>
+				<th>작성시간</th>
+				<td th:text="${post.date}"></td>
+			</tr>
+			<tr>
+				<th>본문</th>
+				<td th:text="${post.content}"></td>
+			</tr>
+		</table>
+		<form>
+			<input type="password" id="pw" placeholder="비밀번호">
+			<button type="button" th:onclick="|checkPw(${post.postId}, 'write')|">수정</button>
+			<button type="button" th:onclick="|checkPw(${post.postId}, 'delete')|">삭제</button>
+		</form>
+		
+		<h4>댓글 작성</h4>
+		<form id="cmntForm" th:action="@{/comment/create/{id}(id=${post.postId})}" method="POST">
+			<input type="text" name="content" placeholder="댓글" required>
+			<input type="password" name="pw" placeholder="비밀번호" required>
+			<input type="submit" value="등록">
+		</form>
+		
+		<h4>댓글</h4>
+		<table>
+			<tr th:each="comment: ${comments}">
+				<td th:text="${comment.content}"></td>
+				<td th:text="${comment.date}"></td>
+				<!-- <td>
+					<button th:onclick="deleteById([[${comment.cmntId}]])">삭제</button>
+				</td> -->
+			</tr>
+		</table>
+		
+		<script>
+		
+			function checkPw(id, map) {
+				
+				const pw = document.getElementById("pw").value;
+				
+				console.log(pw);
+			
+				$.ajax({
+					type: "get",
+					url: `/api/posts/${id}`,
+					dataType: "json",
+					success: function(data){
+						console.log("성공");
+						console.log(pw);
+						console.log(data.pw);
+						if (pw != data.pw) {
+							$("#pw").select();
+							alert("비번 그거 아님");
+							return false;
+						}
+						
+						window.location.href = `/posts/${map}/${id}`;
+					},
+					error: function(){
+						console.log("errrr");
+					}
+				});
+			}
+			
+		</script>
+	</div>
+
+</html>

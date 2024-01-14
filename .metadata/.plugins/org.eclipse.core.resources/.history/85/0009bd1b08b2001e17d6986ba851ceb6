@@ -1,0 +1,5 @@
+package com.example.myschool.post.controller;
+
+public class PostForm {
+
+}

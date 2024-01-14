@@ -1,0 +1,13 @@
+package com.example.myschool;
+
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+//모든 서버 X, DB만 테스트
+@DataJpaTest
+// Test DB를 따로 쓸 것인지 여부, NONE : 기존 DB 사용
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+public class TeacherRepositoryTest {
+	
+	
+}

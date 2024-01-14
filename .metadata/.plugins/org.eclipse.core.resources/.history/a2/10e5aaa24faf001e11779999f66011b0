@@ -1,0 +1,17 @@
+package com.example.myschool.teacher.domain;
+
+import jakarta.persistence.Entity;
+import lombok.Getter;
+import lombok.Setter;
+
+/*
+ * Entity 클래스
+ */
+@Getter
+@Setter
+@Entity
+public class Teacher {
+	
+	@Id
+	@GenrateValue(strategy = GenerationType.IDENTITY)
+}

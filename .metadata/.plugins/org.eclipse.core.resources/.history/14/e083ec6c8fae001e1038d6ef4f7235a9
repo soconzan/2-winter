@@ -1,0 +1,9 @@
+package com.example.myschool.lecture;
+
+import lombok.Getter;
+
+@AllArgsconstructor
+@Getter
+public class dto {
+	
+}

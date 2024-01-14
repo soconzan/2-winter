@@ -1,0 +1,15 @@
+<!-- fragment 이름은 파일 내에서만 중복 안 하면 됨 -->
+<div th:fragment="header">
+	<h1>Header</h1>
+</div>
+
+<div th:fragment="footer">
+	<h1>Footer</h1>
+</div>
+
+<head th:fragment="head">
+	<meta charset="utf-8">
+	<title>HOME</title>
+	<!-- CSS -->
+	<!-- JS -->
+</head>

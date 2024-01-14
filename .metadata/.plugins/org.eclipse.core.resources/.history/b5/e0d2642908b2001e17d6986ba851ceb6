@@ -1,0 +1,8 @@
+package com.example.myschool.post.controller;
+
+public class PostForm {
+	
+	private String title;
+	private String content;
+	private int pw;
+}

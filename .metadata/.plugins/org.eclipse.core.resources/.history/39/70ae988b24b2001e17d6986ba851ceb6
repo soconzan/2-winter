@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::title}, ~{}, ~{::#content})}">
+
+	<title>Write</title>
+
+	<div id="content">
+		<h1>Write</h1>
+		<form th:object="${post}" th:action="${post.postId == null} ? '/posts/create' : '/posts/update' + ${post.postId}" method="POST">
+			제목<input type="text" name="title" th:value="*{title}" required><br>
+			본문<textarea th:field="*{content}" name="content" rows="20" cols="100" required></textarea><br>
+			비밀번호<input type="password" name="pw" required><br>
+			<input type="submit" th:value="${post.postId == null} ? '등록' : '수정'">
+		</form>
+	</div>
+
+</html>

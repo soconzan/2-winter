@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::title}, ~{}, ~{::#content})}">
+
+	<title>Lectures</title>
+
+	<div id="content">
+		<h1>Lectures</h1>
+		<table>
+			<tr>
+				<th>강의</th>
+				<th>소개</th>
+			</tr>
+			<tr th:each="lecture: ${lectures}">
+				<td th:text="${lecture.title}">
+					<a th:text="${lecture.title}" th:href="@{/lecture/{id}(id=${lecture.lectureId})}"></a>
+				</td>
+				<td th:text="${lecture.description}"></td>
+			</tr>
+		</table>
+	</div>
+
+</html>

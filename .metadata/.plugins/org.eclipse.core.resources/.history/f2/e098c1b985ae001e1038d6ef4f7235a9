@@ -1,0 +1,40 @@
+package com.example.hello;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+public class WebController {
+
+//	Get : method
+//	"/" : 경로
+//	@GetMapping("/")
+	public String home() {
+		return "index";
+	}
+
+	/*
+	 * Getter/Setter 설정시
+	 */
+//	@GetMapping("/hello")
+//	@ResponseBody
+//	public String hello() {
+//
+//		User user = new User();
+//		user.getUserId();
+//
+//		return "hello";
+//	}
+	
+	/*
+	 * @AllArgsConstructor
+	 * User 타입 사용
+	 */
+	@GetMapping("/hello")
+	@ResponseBody
+	public User hello() {
+		return new User(1, "ABC");
+	}
+
+}

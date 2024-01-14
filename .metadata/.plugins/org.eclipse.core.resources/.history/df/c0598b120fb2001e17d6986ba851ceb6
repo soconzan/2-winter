@@ -1,0 +1,33 @@
+package com.example.myschool.post.controller;
+
+public class PostForm {
+
+	private String title;
+	private String content;
+	private int pw;
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public int getPw() {
+		return pw;
+	}
+
+	public void setPw(int pw) {
+		this.pw = pw;
+	}
+
+}

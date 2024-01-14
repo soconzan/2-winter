@@ -1,0 +1,27 @@
+package com.example.myschool.post.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.example.myschool.post.domain.Post;
+import com.example.myschool.post.repository.PostRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Service
+public class PostService {
+	
+	private final PostRepository postRepository;
+	
+	// 글 목록 검색
+	public List<Post> getPosts(){
+//		ArrayList<Post> posts = new ArrayList<Post>();
+		
+		List<Post> posts = postRepository.findAll();
+		return posts;
+	}
+	
+}

@@ -1,0 +1,10 @@
+package com.example.hello;
+
+
+@Getter
+@Setter
+public class User {
+	
+	private int userId;
+	private String userName;
+}

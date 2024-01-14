@@ -1,0 +1,27 @@
+package com.example.myschool.post.controller;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.myschool.post.domain.Post;
+import com.example.myschool.post.service.PostService;
+
+import lombok.RequiredArgsConstructor;
+
+@Controller
+@RequiredArgsConstructor
+@RequestMapping("/posts")
+public class PostController {
+	
+	private final PostService postService;
+	
+	@GetMapping("")
+	public List<Post> viewPosts(Model model){
+		model.addAttribute("posts", postService.getPosts());
+		return "posts";
+	}
+}

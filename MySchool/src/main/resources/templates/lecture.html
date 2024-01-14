@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::title}, ~{}, ~{::#content})}">
+
+	<title th:text="${lecture.title}"></title>
+
+	<div id="content">
+		<h3 th:text="${lecture.title}"></h3>
+	</div>
+
+</html>

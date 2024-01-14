@@ -1,0 +1,6 @@
+package com.example.myschool;
+
+@DataJpaTest // 모든 서버 X, DB만 테스트
+public class TeacherRepositoryTest {
+
+}

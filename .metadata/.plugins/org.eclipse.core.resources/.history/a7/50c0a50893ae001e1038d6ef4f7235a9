@@ -1,0 +1,10 @@
+package com.example.myschool.teacher;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
+public class Dto {
+	private String name;
+}

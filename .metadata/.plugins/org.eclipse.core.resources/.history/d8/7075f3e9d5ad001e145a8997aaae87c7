@@ -1,0 +1,19 @@
+package com.example.hello;
+
+//import lombok.Getter;
+//import lombok.Setter;
+//import lombok.AllArgsConstructor;
+
+public class User {
+	
+	private int userId;
+	private String userName;
+}
+
+//@AllArgsConstructor
+//@Getter
+//public class User {
+//	
+//	private int userId;
+//	private String userName;
+//}

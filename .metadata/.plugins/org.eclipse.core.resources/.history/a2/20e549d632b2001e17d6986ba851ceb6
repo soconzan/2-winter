@@ -1,0 +1,13 @@
+package com.example.myschool.comment.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.myschool.comment.domain.Comment;
+
+public interface CommentRepository extends JpaRepository<Comment, Integer>{
+	
+	private List<Comment> findByPostId(int postId);
+
+}

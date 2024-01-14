@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::title}, ~{}, ~{::#content})}">
+
+	<title th:text="${post.title}"></title>
+
+	<div id="content">
+		<h1>게시글</h1>
+		<table>
+			<tr>
+				<th>제목</th>
+				<td th:text="${post.title}"></td>
+			</tr>
+			<tr th:each="post: ${posts}">
+				<td th:text="${post.postId}"></td>
+				<td>
+					<a th:text="${post.title}" th:href="@{/posts/{id}(id=${post.postId})}"></a>
+				</td>
+				<td th:text="${post.date}"></td>
+			</tr>
+		</table>
+	</div>
+
+</html>
