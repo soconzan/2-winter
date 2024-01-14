@@ -31,7 +31,7 @@ public class PostWebController {
 		return "posts";
 	}
 	
-	// 게시글 view
+	// 게시글 view + 댓글
 	@GetMapping("/posts/{id}")
 	public String viewPost(Model model, @PathVariable("id") int id) {
 		model.addAttribute("post", postService.getPost(id));
@@ -94,6 +94,12 @@ public class PostWebController {
 		
 		commentService.save(comment);
 		
+		return "redirect:/posts/{id}";
+	}
+	
+	// 댓글 삭제
+	@GetMapping("/comment/delete/{id}")
+	public String deleteCmnt(@PathVariable("id") int id) {
 		return "redirect:/posts/{id}";
 	}
 }

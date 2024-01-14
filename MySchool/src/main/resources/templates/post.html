@@ -34,18 +34,19 @@
 		</form>
 		
 		<h4>댓글</h4>
-		<table>
+		<table id="comments">
 			<tr th:each="comment: ${comments}">
 				<td th:text="${comment.content}"></td>
 				<td th:text="${comment.date}"></td>
-				<!-- <td>
-					<button th:onclick="deleteById([[${comment.cmntId}]])">삭제</button>
-				</td> -->
+				<td>
+					<button type="button" th:onclick="|checkCmnt(${comment.cmntId})|">삭제</button>
+				</td>
 			</tr>
 		</table>
 		
 		<script>
 		
+			// 게시글 비밀번호 유효성 검사
 			function checkPw(id, map) {
 				
 				const pw = document.getElementById("pw").value;
@@ -57,21 +58,92 @@
 					url: `/api/posts/${id}`,
 					dataType: "json",
 					success: function(data){
-						console.log("성공");
-						console.log(pw);
-						console.log(data.pw);
+					
+						// 비번 틀림
 						if (pw != data.pw) {
 							$("#pw").select();
 							alert("비번 그거 아님");
 							return false;
 						}
 						
+						// 비번 맞음
 						window.location.href = `/posts/${map}/${id}`;
 					},
 					error: function(){
 						console.log("errrr");
 					}
 				});
+			}
+			
+			// 댓글 비밀번호 유효성 검사
+			function checkCmnt(id) {
+				
+				const pw = prompt("비밀번호를 입력하세요.");
+				
+				console.log(pw);
+			
+				$.ajax({
+					type: "get",
+					url: `/api/comments/select/${id}`,
+					dataType: "json",
+					success: function(data){
+					
+						// 비번 틀림
+						if (pw != data.pw) {
+							alert("비번 그거 아님");
+							return false;
+						}
+						
+						// 비번 맞음
+						deleteCmnt(id);
+					},
+					error: function(){
+						console.log("errrr");
+					}
+				});
+			}
+			
+			// 댓글 삭제 및 reload
+			function deleteCmnt(id) {
+				
+				$.ajax({
+					type: "get",
+					url: `/api/comments/delete/${id}`,
+					dataType: "json",
+					success: function(data){
+					
+						const table = document.getElementById("comments");
+						
+						// commentsx table 초기화
+						while (table.rows.length > 0) {
+        					table.deleteRow(0);
+    					}
+						
+						// 새로운 데이터로 테이블 업데이트
+					    for (var i = 0; i < data.length; i++) {
+					    	
+        					var row = table.insertRow(i);
+        					
+       						var cell1 = row.insertCell(0);
+        					var cell2 = row.insertCell(1);
+        					var cell3 = row.insertCell(2);
+        					
+        					cell1.textContent = data[i].content;
+        					cell2.textContent = data[i].date;
+        					
+        					var button = document.createElement("button");
+        					let cmntId = data[i].cmntId;
+        					button.textContent = "삭제";
+        					button.onclick = () => checkCmnt(cmntId);
+        					cell3.appendChild(button);
+    					}
+						
+					},
+					error: function(){
+						console.log("errrr");
+					}
+				});
+				
 			}
 			
 		</script>
