@@ -41,7 +41,7 @@ public class Comment {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER) // 순환 참조..
 	@JoinColumn(name = "post_id", nullable = false)
 	private Post post;
 }

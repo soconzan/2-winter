@@ -1,9 +1,5 @@
 package com.example.memos.dto;
 
-import java.time.LocalDateTime;
-
-import com.example.memos.domain.User;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
