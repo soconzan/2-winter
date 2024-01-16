@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout::layout(~{::title}, ~{::#content}, ~{})}">
+<head>
+<meta charset="UTF-8">
+<title>Members</title>
+</head>
+<body>
+	<div id="content">
+		
+		<!-- 회원 추가 -->
+		<form th:action="@{/add}" method="post">
+			<input type="text" name="phone">
+			<input type="submit" value="회원추가">
+		</form>
+		<br>
+		
+		<table>
+			<tr>
+				<th>전화번호</th>
+				<th>포인트</th>
+			</tr>
+			<tr th:each="member : ${members}">
+				<td><p th:text="${member.phone}"></p></td>
+				<td><p th:text="${member.point}"></p></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
