@@ -2,6 +2,7 @@ package com.example.myschool.lecture.domain;
 
 import com.example.myschool.teacher.domain.Teacher;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -29,7 +30,7 @@ public class Lecture {
 	private String description;
 
 	// 일대다 관계 설정, '다'에 설정 : FK
-	@ManyToOne(fetch = FetchType.EAGER) // many - 나임, one - 상대방임
+	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.REMOVE) // many - 나임, one - 상대방임
 	@JoinColumn(name = "teacher_id")
 	private Teacher teacher;
 }

@@ -50,29 +50,19 @@
 			function checkPw(id, map) {
 				
 				const pw = document.getElementById("pw").value;
+				const postPw = [[${post.pw}]];
 				
 				console.log(pw);
-			
-				$.ajax({
-					type: "get",
-					url: `/api/posts/${id}`,
-					dataType: "json",
-					success: function(data){
-					
-						// 비번 틀림
-						if (pw != data.pw) {
-							$("#pw").select();
-							alert("비번 그거 아님");
-							return false;
-						}
-						
-						// 비번 맞음
-						window.location.href = `/posts/${map}/${id}`;
-					},
-					error: function(){
-						console.log("errrr");
-					}
-				});
+				console.log(postPw);
+
+				
+				if (pw != postPw) {
+					$("#pw").select();
+					alert("비번 그거 아님");
+					return false;
+				}
+				
+				window.location.href = `/posts/${map}/${id}`;
 			}
 			
 			// 댓글 비밀번호 유효성 검사
