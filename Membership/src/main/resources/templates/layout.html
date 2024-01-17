@@ -18,7 +18,6 @@
 	<!-- 로그인 O -->
 	<th:block sec:authorize="isAuthenticated()">
 		<a th:href="@{/members}">회원조회</a>
-		<a th:href="@{/add}">회원등록</a>
 		
 		<form th:action="@{/signout}" method="post">
 			<!-- name은 isAuthenticated() 내부에서만 사용 가능 -->

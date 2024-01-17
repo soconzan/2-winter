@@ -1,8 +1,11 @@
 package com.example.membership.controller;
 
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -22,7 +25,7 @@ public class WebController {
 	private final MemberService memberService;
 	
 	@GetMapping("/")
-	public String index() {
+	public String index(Principal user) {
 		return "index";
 	}
 	
@@ -47,14 +50,8 @@ public class WebController {
 		return "redirect:/members";
 	}
 	
-//	@PostMapping("/signin")
-//	public String signin(
-//			@RequestParam(name)) {
-//		
-//	}
-	
 	@GetMapping("/members")
-	public String members(Model model) {
+	public String members(Model model, Principal user) {
 		model.addAttribute("members", memberService.getMembers());
 		return "members";
 	}
@@ -70,6 +67,17 @@ public class WebController {
 		
 		ra.addAttribute("message", "회원 추가됨");
 		
+		return "redirect:/members";
+	}
+	
+	@PostMapping("/updatePoint/{phone}")
+	public String updatePoint(
+			@PathVariable("phone") String phone,
+			@RequestParam("point") int point
+			) {
+		
+		memberService.updatePoint(phone, point);
+			
 		return "redirect:/members";
 	}
 }

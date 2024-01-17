@@ -26,6 +26,7 @@ public class MemberService {
 	public void updatePoint(String phone, int point) {
 		Member member = memberRepository.findById(phone).get();
 		member.setPoint(member.getPoint() + point);
+		
 		this.join(member);
 	}
 }

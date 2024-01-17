@@ -22,7 +22,6 @@ public class AdminService {
 	
 	// 회원가입
 	public Admin join(Admin admin) {
-//		Admin result = adminRepository.save(requestToEntity(admin));
 		return adminRepository.save(requestToEntity(admin));
 	}
 	

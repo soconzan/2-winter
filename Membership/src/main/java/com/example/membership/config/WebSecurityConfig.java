@@ -28,12 +28,12 @@ public class WebSecurityConfig {
 						.anyRequest().authenticated())
 				.formLogin(login ->
 					login
-						.loginPage("/signin")
+						.loginPage("/signin") // default url : /login
 						.defaultSuccessUrl("/members")
 						.failureForwardUrl("/"))
 				.logout(logout ->
 					logout
-						.logoutUrl("/signout")
+						.logoutUrl("/signout") // default url : /logout
 						.logoutSuccessUrl("/")
 						.invalidateHttpSession(true))
 				.build();

@@ -23,6 +23,12 @@
 			<tr th:each="member : ${members}">
 				<td><p th:text="${member.phone}"></p></td>
 				<td><p th:text="${member.point}"></p></td>
+				<td>
+					<form method="post" th:action="@{/updatePoint/{phone}(phone=${member.phone})}">
+						<input type="text" name="point" id="point">
+						<input type="submit">
+					</form>
+				</td>
 			</tr>
 		</table>
 	</div>
