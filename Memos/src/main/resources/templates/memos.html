@@ -7,8 +7,9 @@
 </head>
 <body>
 	<div id="content">
-		<form th:action="@{/memos}" method="post">
+		<form th:action="@{/memos}" method="post" enctype="multipart/form-data">
 			<textarea type="text" name="body"></textarea>
+			<input type="file" name="file" accept="image/*"> <!-- accept - 허용된 확장명을 가진 파일만 업로드 가능 -->
 			<input type="submit" value="ADD">
 		</form>
 		<br>
@@ -23,7 +24,10 @@
 			</tr>
 			<tr th:each="memo : ${memos}">
 				<td><p th:text="${memo.id}"></p></td>
-				<td><p th:text="${memo.body}"></p></td>
+				<td>
+					<p th:text="${memo.body}"></p>
+					<img th:if="${memo.fileName}!=null" th:src="@{|/uploads/${memo.fileName}|}">
+				</td>
 				<td><p th:text="${memo.username}"></p></td>
 				<td><p th:text="${#temporals.format(memo.createdAt, 'yyyy-MM-dd HH:mm')}"></p></td>
 				<td>

@@ -25,7 +25,8 @@ public class MemoService {
 				memo.getId(),
 				memo.getBody(),
 				memo.getCreatedAt(),
-				memo.getUser().getUsername()
+				memo.getUser().getUsername(),
+				memo.getFileName()
 				);
 	}
 	
@@ -37,6 +38,7 @@ public class MemoService {
 		return new Memo(
 				null,
 				dto.getBody(),
+				dto.getFileName(),
 				null,
 				user
 				);

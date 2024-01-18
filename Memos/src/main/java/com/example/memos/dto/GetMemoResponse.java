@@ -17,4 +17,5 @@ public class GetMemoResponse {
 	private String body;
 	private LocalDateTime createdAt;
 	private String username;
+	private String fileName;
 }

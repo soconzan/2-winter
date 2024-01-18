@@ -23,7 +23,7 @@ public class WebSecurityConfig {
 		return http
 				.authorizeHttpRequests(requests -> // 주소별 필터
 					requests // permitAll() -> 바로 controller로 이동
-						.requestMatchers(HttpMethod.GET, "/css/**", "/js/**", "/images/**").permitAll() // static files 
+						.requestMatchers(HttpMethod.GET, "/css/**", "/js/**", "/images/**", "/uploads/**").permitAll() // static files 
 						.requestMatchers("/signin", "/signout", "/join", "/").permitAll() // All method
 						.anyRequest().authenticated()) // permitAll()이 없는 나머지 페이지는 권한(로그인)이 있어야 접근 가능, 사용자 정보가 있으면 controller로 이동
 				// 로그인 정보가 없으면 formLogin, logout 실행

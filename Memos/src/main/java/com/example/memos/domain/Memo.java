@@ -30,6 +30,9 @@ public class Memo {
 	
 	private String body;
 	
+	// 파일 업로드
+	private String fileName;
+	
 	@CreationTimestamp
 	private LocalDateTime createdAt;
 	

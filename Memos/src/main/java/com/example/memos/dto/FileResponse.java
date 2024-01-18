@@ -9,8 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddMemoRequest {
-	private String body;
-	private String userName;
-	private String fileName;
+public class FileResponse { // 파일 정보 반환
+	
+	private String contentType; // 파일 타입 (이미지, 비디오, 문서 등)
+	private byte[] bytes;
 }
