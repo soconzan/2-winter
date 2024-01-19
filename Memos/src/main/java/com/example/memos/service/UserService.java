@@ -31,5 +31,10 @@ public class UserService {
 		User result = userRepository.save(requestToEntity(dto));
 		return entityToResponse(result);
 	}
+	
+	public User findById(String id) throws IllegalArgumentException{
+		return userRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid user"));
+	}
 
 }

@@ -52,9 +52,9 @@ public class MemoService {
 	}
 	
 	// 메모 등록
-	public Long addMemo(AddMemoRequest dto) {
+	public Memo addMemo(AddMemoRequest dto) {
 		Memo result = memoRepository.save(requestToEntity(dto));
-		return result.getId();
+		return result;
 	}
 	
 	// 메모 삭제
